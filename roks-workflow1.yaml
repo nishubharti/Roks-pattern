@@ -1,0 +1,62 @@
+name: "Roks Blueprint"
+schema_version: "1.0.0"
+type: "blueprint"
+source:
+  source_type: github
+  git:
+    git_repo_url: "https://github.ibm.com/SAP-Automation/powervs-sap-deploy"
+    git_branch: master
+description: "Roks configuration to be used for testing"
+#resource_group: Default
+tags:
+  - "blueprint:Tor-Dev"
+loction: us-south
+modules:
+  - module_type: terraform
+    name: SAP_vpc
+    layer: Roks
+    source:
+      source_type: github
+      git:
+        git_repo_url: "https://github.ibm.com/SAP-Automation/powervs-sap-deploy/tree/master/modules/vpc"
+        git_branch: "master"
+  - module_type: terraform
+    name: SAP_vpcbastion
+    layer: Roks
+    source:
+      source_type: github
+      git:
+        git_repo_url: "https://github.ibm.com/SAP-Automation/powervs-sap-deploy/tree/master/modules/vpc_bastion"
+        git_branch: "master"
+  - module_type: terraform
+    name: SAP_pvs
+    layer: Roks
+    source:
+      source_type: github
+      git:
+        git_repo_url: "https://github.ibm.com/SAP-Automation/powervs-sap-deploy/tree/master/modules/pvs"
+        git_branch: "master"
+  - module_type: terraform
+    name: SAP_createconnections
+    layer: Roks
+    source:
+      source_type: github
+      git:
+        git_repo_folder: "https://github.ibm.com/SAP-Automation/powervs-sap-deploy/tree/master/modules/createconnections"
+        git_branch: "master"
+  - module_type: terraform
+    name: SAP_pvc_hana_netweaver
+    layer: Roks
+    source:
+      source_type: github
+      git:
+        git_repo_url: "https://github.ibm.com/SAP-Automation/powervs-sap-deploy/tree/master/modules/pvs_sap"
+        git_branch: "master"
+  - module_type: terraform
+    name: SAP_vpc_bastion_init_sles_hana
+    layer: Roks
+    source:
+      source_type: github
+      git:
+        git_repo_url: "https://github.ibm.com/SAP-Automation/powervs-sap-deploy/tree/master/modules/vpc_bastion_init_sles"
+        git_branch: "master"
