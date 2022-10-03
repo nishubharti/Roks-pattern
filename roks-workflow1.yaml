@@ -11,6 +11,11 @@ description: "Roks configuration to be used for testing"
 tags:
   - "blueprint:Tor-Dev"
 loction: us-south
+settings:
+  - name: TF_VERSION
+    value: 0.13
+  - name: TF_LOG
+    value: "DEBUG"
 modules:
   - module_type: terraform
     name: SAP_vpc
