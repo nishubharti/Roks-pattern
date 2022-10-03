@@ -47,7 +47,7 @@ modules:
     source:
       source_type: github
       git:
-        git_repo_folder: "https://github.ibm.com/SAP-Automation/powervs-sap-deploy/tree/master/modules/createconnections"
+        git_repo_url: "https://github.ibm.com/SAP-Automation/powervs-sap-deploy/tree/master/modules/createconnections"
         git_branch: "master"
   - module_type: terraform
     name: SAP_pvc_hana_netweaver
