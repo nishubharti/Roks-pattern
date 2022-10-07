@@ -89,6 +89,15 @@ modules:
         value: $blueprint.vpc_securitygroupname
       - name: VPC_ADDRESSPREFIX
         value: vpc_addressprefix
+    injectors:
+      - tft_git_url: "https://github.com/Cloud-Schematics/tf-templates"
+        tft_name: "ibm"
+        injection_type: override
+        tft_parameters:
+          - name: provider_version
+            value: 1.38.2
+          - name: provider_source
+            value: IBM-Cloud/ibm
   - module_type: terraform
     name: SAP_vpcbastion
     layer: Roks
@@ -146,6 +155,7 @@ modules:
         value: $blueprint.pvs_service_name
       - name: PVS_TAGNAME
         value: $blueprint.pvs_tag_name
+        type: list
       - name: PVS_SSHKEY_NAME
         value: $blueprint.pvs_sshkey_name
       - name: PVS_SSHKEY_PUB
@@ -209,6 +219,8 @@ modules:
         default: false
       - name: VPC_NAME
         value: $blueprint.vpc_name
+      - name: PVS_SUBNET_NAMES 
+        value: ["mgmt_net","sap_net","bkp_net"]
     injectors:
       - tft_git_url: "https://github.com/Cloud-Schematics/tf-templates"
         tft_name: "ibm"
@@ -250,6 +262,7 @@ modules:
         default: OK
       - name: DISKS_CONFIGURATION
         value: $blueprint.hana_disks_configuration
+        type: map
     outputs:
       - name: sap_wwns
     injectors:
@@ -299,6 +312,7 @@ modules:
         default : OK
       - name: DISKS_CONFIGURATION
         value: $blueprint.nw_disks_configuration
+        type: map
     outputs:
       - name: sap_wwns
     injectors:
@@ -326,8 +340,10 @@ modules:
         value: $blueprint.bastion_public_ip
       - name: SUSE_ACTIVATION
         value: $blueprint.suse_activation
+        type: map
       - name: VPC_NFS_DISK_CONFIGURATION
         value: $blueprint.vpc_nfs_disk_conf
+        type: map
     injectors:
       - tft_git_url: "https://github.com/Cloud-Schematics/tf-templates"
         tft_name: "ibm"
@@ -355,6 +371,7 @@ modules:
         value: $blueprint.ssh_private_key
       - name: SUSE_ACTIVATION
         value: $blueprint.suse_activation
+        type: map
       - name: VPC_ADDRESS_PREFIX_FOR_ROUTE
         value: $blueprint.vpc_address_prefix_for_route
       - name: PVS_BASTION_SNAT_CONFIG
@@ -393,6 +410,7 @@ modules:
         value: $blueprint.ssh_private_key
       - name: SUSE_ACTIVATION
         value: $blueprint.suse_activation
+        type: map
       - name: VPC_ADDRESS_PREFIX_FOR_ROUTE
         value: $blueprint.vpc_address_prefix_for_route
       - name: PVS_BASTION_SNAT_CONFIG
